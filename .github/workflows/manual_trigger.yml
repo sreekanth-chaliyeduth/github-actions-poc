@@ -5,6 +5,8 @@ on:
 
 jobs:
   test:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,11 +22,36 @@ jobs:
 
       - name: Run tests
         run: make test
+        continue-on-error: true
 
-      - name: Upload Allure Results
-        uses: actions/upload-artifact@v4
+      - name: Load test report history
+        uses: actions/checkout@v4
         if: always()
+        continue-on-error: true
         with:
-          name: allure-results
-          path: reports/allure-results
-          retention-days: 1
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report history
+        if: always()
+        run: |
+          mkdir -p reports/allure-results/history
+          cp -r gh-pages/history/* reports/allure-results/history/ || true
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: reports/allure-results
+          gh_pages: gh-pages
+          allure_report: reports/allure-report
+          allure_history: reports/allure-results/history
+
+      - name: Publish to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: reports/allure-report

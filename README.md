@@ -43,6 +43,14 @@ make clean
 3.  Click the **Run workflow** button.
 4.  Leave branch as `main` and click the green **Run workflow** button.
 
+## 📊 Allure Report & History
+Tests reports are automatically published to **GitHub Pages**.
+- **Report URL**: `https://sreekanth-chaliyeduth.github.io/github-actions-poc/`
+- **History**: The report includes a trend graph showing the history of previous test runs. This is handled by determining the difference between the current run and the previous report stored in the `gh-pages` branch.
+
+**Setup Note**:
+After the first successful run, go to `Settings` -> `Pages` in your repository and ensure the source is set to **Deploy from a branch** and select `gh-pages` / `/ (root)`.
+
 ## 🔒 Security Note
 In a **public repository**:
 - **Anyone** can view the code and the test results (Actions history).
