@@ -3,8 +3,8 @@ name: Automated Tests
 on:
   workflow_dispatch:
   schedule:
-    # 1:15 AM IST is 19:45 UTC (IST is UTC+5:30)
-    - cron: '45 19 * * *'
+    # 1:35 PM IST is 08:05 UTC (IST is UTC+5:30)
+    - cron: '5 8 * * *'
   pull_request:
     branches:
       - main

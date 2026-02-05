@@ -49,7 +49,7 @@ You can control when the tests run using **Repository Variables** (Settings > Se
 | Trigger Type | Description | How to Disable |
 | :--- | :--- | :--- |
 | **Manual** | Triggers via the "Run workflow" button. | Cannot be disabled (always available). |
-| **Daily Schedule** | Runs at **1:15 AM IST** (19:45 UTC). | Create Variable `ENABLE_SCHEDULE` = `false` |
+| **Daily Schedule** | Runs at **1:35 PM IST** (08:05 UTC). | Create Variable `ENABLE_SCHEDULE` = `false` |
 | **Pull Request** | Runs on PRs to `main`. | Create Variable `ENABLE_PR_CHECKS` = `false` |
 
 > **Note**: If the variable does not exist, the trigger defaults to **ON**. To disable, you must explicitly create the variable and set it to `false`.
