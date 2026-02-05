@@ -1,12 +1,17 @@
-# GitHub Actions POC - Manual Trigger
+# GitHub Actions POC - Triggers & Reports
 
 ![Automated Tests](https://github.com/sreekanth-chaliyeduth/github-actions-poc/actions/workflows/automated_tests.yml/badge.svg)
 
-A simple Python test framework using **Playwright** and **Pytest**, designed to demonstrate **manual execution** of GitHub Actions workflows.
+**Project Scope:** This project explores how GitHub Actions triggers work and how Allure Reports can be deployed to GitHub Pages.
+
+The poc uses a Python-based test automation framework built with Playwright, Requests and Pytest.
 
 ## Features
-- **Triggers**: Manual (`workflow_dispatch`), Scheduled (Daily), and PR-based.
-- **Reporting**: Allure Reports integration.
+- **Advanced Triggers**:
+    - **Manual**: `workflow_dispatch` for on-demand execution.
+    - **Scheduled**: Cron-based daily runs.
+    - **Event-based**: Automatic runs on Pull Requests.
+- **Reporting**: Allure Reports with historical trend graphs, published seamlessly to GitHub Pages.
 - **Tools**: `pytest`, `playwright`, `make`.
 
 ## Quick Start
