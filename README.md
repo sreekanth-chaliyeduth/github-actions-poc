@@ -1,11 +1,11 @@
 # GitHub Actions POC - Manual Trigger
 
-![Manual Test Trigger](https://github.com/sreekanth-chaliyeduth/github-actions-poc/actions/workflows/manual_trigger.yml/badge.svg)
+![Automated Tests](https://github.com/sreekanth-chaliyeduth/github-actions-poc/actions/workflows/automated_tests.yml/badge.svg)
 
 A simple Python test framework using **Playwright** and **Pytest**, designed to demonstrate **manual execution** of GitHub Actions workflows.
 
 ## Features
-- **Manual Trigger**: Workflow configured with `workflow_dispatch` to be run manually from the GitHub UI.
+- **Triggers**: Manual (`workflow_dispatch`), Scheduled (Daily), and PR-based.
 - **Reporting**: Allure Reports integration.
 - **Tools**: `pytest`, `playwright`, `make`.
 
@@ -42,6 +42,17 @@ make clean
 2.  Select **Manual Test Trigger** from the sidebar.
 3.  Click the **Run workflow** button.
 4.  Leave branch as `main` and click the green **Run workflow** button.
+
+## 🤖 Automated Triggers & Control
+You can control when the tests run using **Repository Variables** (Settings > Secrets and variables > Actions > Variables).
+
+| Trigger Type | Description | How to Disable |
+| :--- | :--- | :--- |
+| **Manual** | Triggers via the "Run workflow" button. | Cannot be disabled (always available). |
+| **Daily Schedule** | Runs at **1:15 AM IST** (19:45 UTC). | Create Variable `ENABLE_SCHEDULE` = `false` |
+| **Pull Request** | Runs on PRs to `main`. | Create Variable `ENABLE_PR_CHECKS` = `false` |
+
+> **Note**: If the variable does not exist, the trigger defaults to **ON**. To disable, you must explicitly create the variable and set it to `false`.
 
 ## 📊 Allure Report & History
 Tests reports are automatically published to **GitHub Pages**.

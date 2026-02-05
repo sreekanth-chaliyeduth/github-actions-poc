@@ -1,10 +1,24 @@
-name: Manual Test Trigger
+name: Automated Tests
 
 on:
   workflow_dispatch:
+  schedule:
+    # 1:15 AM IST is 19:45 UTC (IST is UTC+5:30)
+    - cron: '45 19 * * *'
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
+    # Logic:
+    # 1. Always run on Manual Trigger (workflow_dispatch)
+    # 2. Run on Schedule ONLY IF ENABLE_SCHEDULE is not 'false'
+    # 3. Run on PR ONLY IF ENABLE_PR_CHECKS is not 'false'
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'schedule' && vars.ENABLE_SCHEDULE != 'false') ||
+      (github.event_name == 'pull_request' && vars.ENABLE_PR_CHECKS != 'false')
     permissions:
       contents: write
     runs-on: ubuntu-latest
